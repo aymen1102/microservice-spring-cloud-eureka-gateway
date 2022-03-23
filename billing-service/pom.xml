@@ -3,10 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.5-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.aybaroud</groupId>
+		<artifactId>microservice-spring-cloud-eureka-gateway</artifactId>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.aybaroud</groupId>
 	<artifactId>billing-service</artifactId>
@@ -14,7 +13,7 @@
 	<name>billing-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>16</java.version>
 		<spring-cloud.version>2021.0.2-SNAPSHOT</spring-cloud.version>
 	</properties>
 	<dependencies>
