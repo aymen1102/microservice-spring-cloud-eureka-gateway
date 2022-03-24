@@ -1,0 +1,21 @@
+# lb : load balancer
+
+# predicates: - Path= /customers/**  :
+#if the path contains /customers/** send to uri lb://CUSTOMER-SERVICE:8081
+
+# CUSTOMER-SERVICE : service name
+# INVENTORY-SERVICE : service name
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: route1
+          uri: lb://CUSTOMER-SERVICE:8081
+          predicates:
+          - Path= /customers/**
+        - id: route2
+          uri: lb://INVENTORY-SERVICE:8082
+          predicates:
+          - Path= /products/**
+    discovery:
+      enabled: true

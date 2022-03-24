@@ -22,6 +22,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- Spring cloud dependencies -->
+		<!--a REST based service for locating services for the purpose of load balancing and failover of middle tier servers-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>

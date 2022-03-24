@@ -16,6 +16,7 @@
 
 	<dependencies>
 		<!-- Spring boot dependencies -->
+		<!-- build web including RESTful application using spring MVC uses Tomcat as the default container-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -25,14 +26,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- persist data in SQL stores with Java Persistence API using Spring Data and hibernate -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- exposing Spring repositories over REST via Spring Data REST -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
+		<!-- provides fast application restarts , liveReload and other configurations -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -44,6 +48,7 @@
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 		<!-- Spring cloud dependencies -->
+		<!--a REST based service for locating services for the purpose of load balancing and failover of middle tier servers-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
@@ -58,6 +63,7 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Java annotation library which helps to reduce boilerplate code -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

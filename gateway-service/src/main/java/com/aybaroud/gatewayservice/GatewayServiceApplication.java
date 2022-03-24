@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.circuitbreaker.resilience4j.ReactiveResilience4JCircuitBreakerFactory;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder;
 import org.springframework.cloud.client.circuitbreaker.Customizer;
+import org.springframework.cloud.client.discovery.ReactiveDiscoveryClient;
+import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
+import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -26,13 +29,29 @@ public class GatewayServiceApplication {
     @Bean
     RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(p -> p
-                        .path("/v3.1/**" )
-                        .filters(f ->
-                                f.circuitBreaker(c -> c.setName("countries" )
-                                        .setFallbackUri("forward:/defaultCountries" )))
-                        .uri("http://restcountries.com" ))
+                .route(p -> p.path("/v3.1/**")
+                        .filters(f -> f.circuitBreaker(c -> c.setName("countries")
+                                        .setFallbackUri("forward:/defaultCountries")))
+                        .uri("http://restcountries.com"))
                 .build();
+    }
+
+    /** Gateway Routing : Same static configuration as yaml file*/
+    /*@Bean
+    RouteLocator staticRoutes(RouteLocatorBuilder builder){
+        return builder.routes()
+                .route(p->p.path("/customers/**")
+                        .uri("lb://CUSTOMER-SERVICE/"))
+                .route(p->p.path("/products/**")
+                        .uri("lb://INVENTORY-SERVICE/"))
+                .build();
+    }*/
+
+    /** Gateway Routing : dynamic configuration*/
+    @Bean
+    DiscoveryClientRouteDefinitionLocator dynamicRoutes(ReactiveDiscoveryClient rdc,
+                                                        DiscoveryLocatorProperties dlp){
+        return new DiscoveryClientRouteDefinitionLocator(rdc,dlp);
     }
 
     @Bean
@@ -40,7 +59,6 @@ public class GatewayServiceApplication {
         return HttpClient.create().
                 resolver(DefaultAddressResolverGroup.INSTANCE);
     }
-
 
     @Bean
     public Customizer<ReactiveResilience4JCircuitBreakerFactory> defaultCustomizer() {

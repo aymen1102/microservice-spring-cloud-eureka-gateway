@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
 @SpringBootApplication
 public class CustomerServiceApplication {
@@ -14,8 +15,11 @@ public class CustomerServiceApplication {
 	}
 
 	@Bean
-	CommandLineRunner start(CustomerRepository customerRepository){
+	CommandLineRunner start(CustomerRepository customerRepository,
+							RepositoryRestConfiguration repositoryRestConfiguration){
 		return args -> {
+			/*use spring data REST dependency*/
+			repositoryRestConfiguration.exposeIdsFor(Customer.class);
 			customerRepository.save(new Customer(null,"Jack","jack@gmail.com"));
 			customerRepository.save(new Customer(null,"Laure","laure@gmail.com"));
 			customerRepository.save(new Customer(null,"Romain","romain@gmail.com"));

@@ -4,12 +4,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
 
 @SpringBootApplication
 @EnableEurekaClient
+@EnableFeignClients
 public class BillingServiceApplication {
 
 	public static void main(String[] args) {
@@ -18,12 +20,16 @@ public class BillingServiceApplication {
 
 	@Bean
 	CommandLineRunner start(BillRepository billRepository,
-							ProductItemRepository productItemRepository){
+							ProductItemRepository productItemRepository,
+							CustomerService customerService,
+							InventoryService inventoryService){
 		return args -> {
-			Bill bill1 = billRepository.save(new Bill(null,new Date(),1L,null,null));
-			productItemRepository.save(new ProductItem(null,1L,30,null,500,bill1));
-			productItemRepository.save(new ProductItem(null,2L,80,null,900,bill1));
-			productItemRepository.save(new ProductItem(null,3L,50,null,200,bill1));
+			Customer customer = customerService.getCustomerById(1L);
+			Product product = inventoryService.findProductById(2L);
+			Bill bill = billRepository.save(new Bill(null,new Date(),customer.getId(),customer,null));
+			inventoryService.findAllProduct().getContent().forEach(p->{
+				productItemRepository.save(new ProductItem(null,p.getId(),30,product,p.getPrice(),bill));
+			});
 		};
 	}
 }
