@@ -12,8 +12,8 @@
 
     <modules>
         <module>eureka-server</module>
-        <module>billing-service</module>
         <module>customer-service</module>
+        <module>billing-service</module>
         <module>inventory-service</module>
         <module>gateway-service</module>
     </modules>
