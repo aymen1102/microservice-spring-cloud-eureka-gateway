@@ -1,9 +1,10 @@
-package com.aybaroud.billingservice;
+package com.aybaroud.billingservice.repository;
 
+import com.aybaroud.billingservice.model.Bill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-interface BillRepository
+public interface BillRepository
         extends JpaRepository<Bill,Long> {
 }

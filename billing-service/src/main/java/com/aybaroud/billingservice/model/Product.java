@@ -1,4 +1,4 @@
-package com.aybaroud.billingservice;
+package com.aybaroud.billingservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

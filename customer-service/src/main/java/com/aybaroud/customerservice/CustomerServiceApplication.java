@@ -14,6 +14,7 @@ public class CustomerServiceApplication {
 		SpringApplication.run(CustomerServiceApplication.class, args);
 	}
 
+	// @Bean execute at the beginning
 	@Bean
 	CommandLineRunner start(CustomerRepository customerRepository,
 							RepositoryRestConfiguration repositoryRestConfiguration){

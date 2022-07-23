@@ -1,4 +1,4 @@
-package com.aybaroud.billingservice;
+package com.aybaroud.billingservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-class ProductItem{
+public class ProductItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

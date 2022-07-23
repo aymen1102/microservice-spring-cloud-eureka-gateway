@@ -1,5 +1,6 @@
-package com.aybaroud.billingservice;
+package com.aybaroud.billingservice.service;
 
+import com.aybaroud.billingservice.model.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.aybaroud.billingservice;
+package com.aybaroud.billingservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-
 public class Bill {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
