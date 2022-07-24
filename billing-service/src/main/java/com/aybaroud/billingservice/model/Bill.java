@@ -15,6 +15,7 @@ public class Bill {
     private Long id;
     private Date billingDate;
     private Long customerId;
+    // this field is not stored in the database
     @Transient
     private Customer customer;
     @OneToMany(mappedBy = "bill")

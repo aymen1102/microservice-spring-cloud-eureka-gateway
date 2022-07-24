@@ -36,7 +36,7 @@ public class  BillingServiceApplication {
 			Customer customer = customerService.getCustomerById(1L);
 			Product product = inventoryService.findProductById(2L);
 
-			// create new bill
+			// Create new bill
 			Bill bill = billRepository.save(new Bill(null,new Date(),customer.getId(),customer,null));
 
 
